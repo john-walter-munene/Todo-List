@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { projectsBoard } from './projectsBoard';
 
 function component() {
     const element = document.createElement('div');
