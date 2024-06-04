@@ -5,13 +5,17 @@ module.exports = {
     mode: 'development',
     entry: {
         index: './src/index.js',
+        projectsBoard: './src/projectsBoard.js',
+        project: './src/project.js',
+        task: './src/task.js',
+        notes: './src/notes.js',
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: 'index.html',
             scriptLoading: 'defer'
-        })
+        }),
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
