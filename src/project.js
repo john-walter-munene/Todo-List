@@ -1,47 +1,54 @@
-import { Task } from "./task";
+import { availabilityChecker } from "./utitilityFunctions";
 
 // Projects Generator
 class Project {
-    constructor(projectName, status, owner, dueDate, projectPriority, completionStatus,) {
+    constructor(projectName, status, owner, dueDate, projectPriority, projectSummary,) {
         this.projectName = projectName;
         this.status = status;
         this.owner = owner;
         this.dueDate = dueDate;
         this.projectPriority = projectPriority;
-        this.completionStatus = completionStatus;
+        this.projectSummary = projectSummary;
         this.projectTasks = [];
     }
 
-    // addNewTaskToProject(taskTitle, taskAssignee, taskStatus, taskDescription, dueDate, taskPriority,) {
-    //     let newTask = new Task(taskTitle, taskAssignee, taskStatus, taskDescription, dueDate, taskPriority,);
-    //     this.projectTasks.push(newTask);
-    //     return;
-    // }
+    // Get all tasks in a project
     getProjectTasks() {
         return this.projectTasks;
     }
     
+    // Add a new task to a project.
     addNewTaskToProject(task) {
         this.projectTasks.push(task);
         return;
     }
-
+    // Visualize all tasks in a project
     printTasksInProject() {
         this.projectTasks.forEach(task => console.log(task));
         return;
     }
+
+    // Visualize specific task
+    printSpecificTask(taskIndex) {
+        if (availabilityChecker(taskIndex, this.projectTasks,)) {
+            console.log("Can't delete non-existent task!");
+            return;
+        }
+
+        console.log(`Logging task: ${taskIndex + 1}`);
+        console.log(this.projectTasks[taskIndex]);
+    }
+
+    deleteTaskFromProject(taskIndex) {
+        if (availabilityChecker(taskIndex, this.projectTasks,)) {
+            console.log("Cant delete non existent task!");
+            return;
+        }
+
+        console.log(`Deleting task number: ${taskIndex + 1}`);
+        this.projectTasks.splice(taskIndex, 1,);
+        return; 
+    }
 }
 
-function taskGenerator() {
-    let newTask = new Task(
-        "Write Project Proposal",
-        "John Walter",
-        "In progress",
-        "This project proposal aims to achieve cross-functional alignment on investing in mobile performance in Q3.",
-        "July 15, 2024",
-        "High",
-    );
-    return newTask;
-}
-// newProject.projectTasks.push(myTask);
-export { Project, taskGenerator };
+export { Project };

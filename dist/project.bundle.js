@@ -10,23 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/notes.js":
-/*!**********************!*\
-  !*** ./src/notes.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Notes: () => (/* binding */ Notes)\n/* harmony export */ });\n// Notes generator.\r\nclass Notes {\r\n    constructor() {\r\n        this.notePoints = [];\r\n    }\r\n\r\n    addNotes(noteLead, notePoints) {\r\n        let points = {\r\n            noteLead,\r\n            notePoints,\r\n        }\r\n        this.notePoints.push(points);\r\n        return;\r\n    }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://todo-list/./src/notes.js?");
-
-/***/ }),
-
 /***/ "./src/project.js":
 /*!************************!*\
   !*** ./src/project.js ***!
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Project: () => (/* binding */ Project),\n/* harmony export */   taskGenerator: () => (/* binding */ taskGenerator)\n/* harmony export */ });\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ \"./src/task.js\");\n\r\n\r\n// Projects Generator\r\nclass Project {\r\n    constructor(projectName, status, owner, dueDate, projectPriority, completionStatus,) {\r\n        this.projectName = projectName;\r\n        this.status = status;\r\n        this.owner = owner;\r\n        this.dueDate = dueDate;\r\n        this.projectPriority = projectPriority;\r\n        this.completionStatus = completionStatus;\r\n        this.projectTasks = [];\r\n    }\r\n\r\n    // addNewTaskToProject(taskTitle, taskAssignee, taskStatus, taskDescription, dueDate, taskPriority,) {\r\n    //     let newTask = new Task(taskTitle, taskAssignee, taskStatus, taskDescription, dueDate, taskPriority,);\r\n    //     this.projectTasks.push(newTask);\r\n    //     return;\r\n    // }\r\n    getProjectTasks() {\r\n        return this.projectTasks;\r\n    }\r\n    \r\n    addNewTaskToProject(task) {\r\n        this.projectTasks.push(task);\r\n        return;\r\n    }\r\n\r\n    printTasksInProject() {\r\n        this.projectTasks.forEach(task => console.log(task));\r\n        return;\r\n    }\r\n}\r\n\r\nfunction taskGenerator() {\r\n    let newTask = new _task__WEBPACK_IMPORTED_MODULE_0__.Task(\r\n        \"Write Project Proposal\",\r\n        \"John Walter\",\r\n        \"In progress\",\r\n        \"This project proposal aims to achieve cross-functional alignment on investing in mobile performance in Q3.\",\r\n        \"July 15, 2024\",\r\n        \"High\",\r\n    );\r\n    return newTask;\r\n}\r\n// newProject.projectTasks.push(myTask);\r\n\n\n//# sourceURL=webpack://todo-list/./src/project.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Project: () => (/* binding */ Project)\n/* harmony export */ });\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ \"./src/task.js\");\n/* harmony import */ var _utitilityFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utitilityFunctions */ \"./src/utitilityFunctions.js\");\n\r\n\r\n\r\n// Projects Generator\r\nclass Project {\r\n    constructor(projectName, status, owner, dueDate, projectPriority, projectSummary,) {\r\n        this.projectName = projectName;\r\n        this.status = status;\r\n        this.owner = owner;\r\n        this.dueDate = dueDate;\r\n        this.projectPriority = projectPriority;\r\n        this.projectSummary = projectSummary;\r\n        this.projectTasks = [];\r\n    }\r\n\r\n    // Get all tasks in a project\r\n    getProjectTasks() {\r\n        return this.projectTasks;\r\n    }\r\n    \r\n    // Add a new task to a project.\r\n    addNewTaskToProject(task) {\r\n        this.projectTasks.push(task);\r\n        return;\r\n    }\r\n    // Visualize all tasks in a project\r\n    printTasksInProject() {\r\n        this.projectTasks.forEach(task => console.log(task));\r\n        return;\r\n    }\r\n\r\n    // Visualize specific task\r\n    printSpecificTask(taskIndex) {\r\n        if ((0,_utitilityFunctions__WEBPACK_IMPORTED_MODULE_1__.availabilityChecker)(taskIndex, this.projectTasks,)) {\r\n            console.log(\"Can't delete non-existent task!\");\r\n            return;\r\n        }\r\n\r\n        console.log(`Logging task: ${taskIndex + 1}`);\r\n        console.log(this.projectTasks[taskIndex]);\r\n    }\r\n\r\n    deleteTaskFromProject(taskIndex) {\r\n        if ((0,_utitilityFunctions__WEBPACK_IMPORTED_MODULE_1__.availabilityChecker)(taskIndex, this.projectTasks,)) {\r\n            console.log(\"Cant delete non existent task!\");\r\n            return;\r\n        }\r\n\r\n        console.log(`Deleting task number: ${taskIndex + 1}`);\r\n        this.projectTasks.splice(taskIndex, 1,);\r\n        return; \r\n    }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://todo-list/./src/project.js?");
 
 /***/ }),
 
@@ -36,7 +26,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Task: () => (/* binding */ Task)\n/* harmony export */ });\n/* harmony import */ var _notes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./notes */ \"./src/notes.js\");\n\r\n\r\n// Task generator.\r\nclass Task {\r\n    constructor(taskTitle, taskAssignee, taskStatus, taskDescription, dueDate, taskPriority,) {\r\n        this.taskTitle = taskTitle;\r\n        this.taskAssignee = taskAssignee;\r\n        this.taskStatus = taskStatus;\r\n        this.taskDescription = taskDescription;\r\n        this.dueDate = dueDate;\r\n        this.taskPriority = taskPriority;\r\n        this.taskNotes = new _notes__WEBPACK_IMPORTED_MODULE_0__.Notes();\r\n    }\r\n}\r\n\r\n// newTask.taskNotes.addNotes(\"Goals\", \"Run a developer marathon.\");\r\n// for (let key in newTask) {\r\n//     console.log(newTask[key]);\r\n// }\r\n\r\n// newTask.taskNotes.notePoints.forEach(noteItem => {\r\n//     for (let note in noteItem) console.log(noteItem[note]);\r\n// });\r\n\r\n\n\n//# sourceURL=webpack://todo-list/./src/task.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Task: () => (/* binding */ Task)\n/* harmony export */ });\n// Task generator.\r\nclass Task {\r\n    constructor(taskTitle, taskAssignee, taskStatus, taskDescription, dueDate, taskPriority,) {\r\n        this.taskTitle = taskTitle;\r\n        this.taskAssignee = taskAssignee;\r\n        this.taskStatus = taskStatus;\r\n        this.taskDescription = taskDescription;\r\n        this.dueDate = dueDate;\r\n        this.taskPriority = taskPriority;\r\n    }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://todo-list/./src/task.js?");
+
+/***/ }),
+
+/***/ "./src/utitilityFunctions.js":
+/*!***********************************!*\
+  !*** ./src/utitilityFunctions.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   availabilityChecker: () => (/* binding */ availabilityChecker),\n/* harmony export */   projectGenerator: () => (/* binding */ projectGenerator),\n/* harmony export */   taskGenerator: () => (/* binding */ taskGenerator)\n/* harmony export */ });\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ \"./src/task.js\");\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ \"./src/project.js\");\n\r\n\r\n\r\n// Create a default project, all tasks to be added here, if choice project not specified.\r\nfunction projectGenerator() {\r\n    let newProject = new _project__WEBPACK_IMPORTED_MODULE_1__.Project(\r\n        \"Sample Project: Performance\",\r\n        \"Planning\",\r\n        \"John Walter\",\r\n        \"June 26, 2024\",\r\n        \"Low\",\r\n        \"I am your first project.\",\r\n    );\r\n    return newProject;\r\n}\r\n\r\n// Create a task to test my works.\r\nfunction taskGenerator() {\r\n    let newTask = new _task__WEBPACK_IMPORTED_MODULE_0__.Task(\r\n        \"Write Project Proposal\",\r\n        \"John Walter\",\r\n        \"In progress\",\r\n        \"This project proposal aims to achieve cross-functional alignment on investing in mobile performance in Q3.\",\r\n        \"July 15, 2024\",\r\n        \"High\",\r\n    );\r\n    return newTask;\r\n}\r\n\r\nfunction availabilityChecker(itemIndex, myArray) {\r\n    return itemIndex > myArray.length - 1;\r\n}\r\n\r\n\n\n//# sourceURL=webpack://todo-list/./src/utitilityFunctions.js?");
 
 /***/ })
 
@@ -99,7 +99,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/project.js");
 /******/ 	
 /******/ })()
