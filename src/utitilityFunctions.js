@@ -7,9 +7,10 @@ function projectGenerator() {
         "Sample Project: Performance",
         "Planning",
         "John Walter",
+        "May 30, 2024",
         "June 26, 2024",
         "Low",
-        "I am your first project.",
+        "I am your first project."
     );
     return newProject;
 }
@@ -22,9 +23,21 @@ function taskGenerator() {
         "In progress",
         "This project proposal aims to achieve cross-functional alignment on investing in mobile performance in Q3.",
         "July 15, 2024",
-        "High",
+        "High"
     );
     return newTask;
+}
+
+function taskUpdater() {
+    let updatedTask = new Task(
+        "Rewrite Project Proposal",
+        "Munene Njeru",
+        "Planning",
+        "This project needs to be updated to meet the new Catalyst requirements.",
+        "July 15, 2024",
+        "Medium"
+    );
+    return updatedTask;
 }
 
 // Test for task or project presence.
@@ -32,4 +45,9 @@ function availabilityChecker(itemIndex, myArray) {
     return itemIndex > myArray.length - 1;
 }
 
-export { projectGenerator, taskGenerator, availabilityChecker };
+export { 
+    projectGenerator, 
+    taskGenerator, 
+    availabilityChecker, 
+    taskUpdater,
+};
