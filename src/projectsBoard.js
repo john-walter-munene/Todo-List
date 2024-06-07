@@ -13,54 +13,35 @@ const projectsBoard = (function ProjectsBoard() {
     const printProjectsBoard = () => console.log(myProjects);
 
     // View all tasks in all projects.
-     const printAllTasksInProjectBoard = () => {
+    const printAllTasksInProjectBoard = () => {
         console.log("Viewing all tasks in projects board...");
         myProjects.forEach(project => project.printTasksInProject());
-        return;
     };
 
     // Add a new project to my board.
     const addNewProjectToBoard = (project) => {
         myProjects.push(project);
-        return;
     };
 
     // Add task to default project.
     const addTaskToProject = (projectChoiceViaIndex = 0, task) => {
-       myProjects[projectChoiceViaIndex].addNewTaskToProject(task);
-       return;
-    };
-
-    // Delete a project from board.
-    const deleteProjectFromBoard = (projectIndex) => {
-        if (availabilityChecker(projectIndex, myProjects,)) {
-            console.log("Cant delete non existent project");
-            return;
-        }
-
-        console.log(`Existing projects before deleting: ${myProjects.length}`);
-        console.log(`Deleting project number: ${projectIndex + 1}`);
-
-        myProjects.splice(projectIndex, 1,);
-        console.log(`Projects left: ${myProjects.length}`);
-        return;
+        myProjects[projectChoiceViaIndex].addNewTaskToProject(task);
     };
 
     // View tasks in each project.
-    const showTasksInChoseProject = (projectIndex) => {
-        if (availabilityChecker(projectIndex, myProjects,)) {
-            console.log("Project does not exist")
+    const showTasksInChosenProject = (projectIndex) => {
+        if (availabilityChecker(projectIndex, myProjects)) {
+            console.log("Project does not exist");
             return;
         }
 
         console.log(`Viewing tasks in project number: ${projectIndex + 1}`);
-        myProjects[projectIndex]. printTasksInProject();
-        return;
-    }
+        myProjects[projectIndex].printTasksInProject();
+    };
 
     // Visualize specific task in specific project.
     const showSpecificTaskInSpecificProject = (projectIndex, taskIndex) => {
-        if (availabilityChecker(projectIndex, myProjects,)) {
+        if (availabilityChecker(projectIndex, myProjects)) {
             console.log("Project does not exist");
             return;
         }
@@ -68,19 +49,42 @@ const projectsBoard = (function ProjectsBoard() {
         console.log(`Logging task in project ${projectIndex + 1}`);
         let targetProject = myProjects[projectIndex];
         targetProject.printSpecificTask(taskIndex);
-        return;
+    };
+
+    // Update/Edit specific task.
+    const updateSpecificTaskInChosenProject = (projectIndex, taskIndex, newTaskDetails) => {
+        if (availabilityChecker(projectIndex, myProjects)) {
+            console.log("Can't update task in non existent project");
+            return;
+        }
+        
+        console.log(`Updating task in project: ${projectIndex + 1}`);
+        myProjects[projectIndex].updateSpecificTask(taskIndex, newTaskDetails);
+    }
+
+    // Delete a project from board.
+    const deleteProjectFromBoard = (projectIndex) => {
+        if (availabilityChecker(projectIndex, myProjects)) {
+            console.log("Cant delete non existent project");
+            return;
+        }
+    
+        console.log(`Existing projects before deleting: ${myProjects.length}`);
+        console.log(`Deleting project number: ${projectIndex + 1}`);
+    
+        myProjects.splice(projectIndex, 1);
+        console.log(`Projects left: ${myProjects.length}`);
     };
 
     // Delete specific task in specific project.
     const deleteSpecificTask = (projectIndex, taskIndex) => {
-        if (availabilityChecker(projectIndex, myProjects,)) {
+        if (availabilityChecker(projectIndex, myProjects)) {
             console.log("Cant find this project!");
             return;
         }
 
         console.log(`Deleting task in project: ${projectIndex + 1}`);
         myProjects[projectIndex].deleteTaskFromProject(taskIndex);
-        return;
     };
 
     return {
@@ -88,21 +92,20 @@ const projectsBoard = (function ProjectsBoard() {
         printProjectsBoard,
         printAllTasksInProjectBoard,
         addNewProjectToBoard,
-        addTaskToProject, 
-        deleteProjectFromBoard,
-        showTasksInChoseProject,
+        addTaskToProject,
+        showTasksInChosenProject,
         showSpecificTaskInSpecificProject,
+        updateSpecificTaskInChosenProject,
+        deleteProjectFromBoard,
         deleteSpecificTask,
     };
 })();
-
-
 
 // Add two duplicate projects for testing.
 projectsBoard.addNewProjectToBoard(projectGenerator());
 projectsBoard.addNewProjectToBoard(projectGenerator());
 
-// Create a new tasks, add it to my default project.
+// Create new tasks, add it to my default project.
 projectsBoard.addTaskToProject(0, taskGenerator());
 projectsBoard.addTaskToProject(0, taskGenerator());
 

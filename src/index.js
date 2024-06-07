@@ -1,5 +1,6 @@
 // import _ from 'lodash';
 import { projectsBoard } from './projectsBoard';
+import { taskUpdater } from './utitilityFunctions';
 
 // function component() {
 //     const element = document.createElement('div');
@@ -12,5 +13,6 @@ import { projectsBoard } from './projectsBoard';
 // document.body.appendChild(component());
 
 console.log("from index.js");
-projectsBoard.deleteSpecificTask(1, 1);
+projectsBoard.updateSpecificTaskInChosenProject(1, 1, taskUpdater());
 projectsBoard.printAllTasksInProjectBoard();
+projectsBoard.printProjectsBoard();
