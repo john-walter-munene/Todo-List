@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Quattrocento_Sans';
+    src: url('./fonts/Quattrocento_Sans/QuattrocentoSans-Regular.ttf') format('ttf');
+        font-weight: 600;
+        font-style: normal;
+  } 
+
+* {
+    font-family: 'Quattrocento_Sans', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dark Mode Theme build base */
+:root.dark {
+    --base-background-color: rgb(23, 23, 23);
+    --base-color: rgb(240, 255, 255);
+    --border-btn: 1px solid rgb(220, 220, 220);
+    --color-btn-bg: rgb(36, 36, 36);
+    --navigation-btn-color: rgb(63, 63, 70);
+}
+
+/* Light Mode build base */
+:root.light {
+    --base-background-color: rgb(240, 255, 255);
+    --base-color: rgb(23, 23, 23);
+    --border-btn: 1px solid rgb(36, 36, 36);
+    --color-btn-bg: rgb(220, 220, 220);
+    --navigation-btn-color: rgb(24, 24, 27);
+}
+
+header {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--base-background-color);
+    color: var(--base-color);
+    min-width: 500px;
+    border-bottom: var(--border-btn);
+}
+
+.theme-toggle {
+    background-color: var(--color-btn-bg);
+    color: var(--base-color);
+    border: var(--border-btn);
+    font-size: 1.125rem;
+    padding: 10px 20px;
+    margin-right: 3rem;
+}
+
+header h1 {
+    margin-left: 3rem;
+}
+
+.projects-heading,
+.tasks-heading {
+    background-color: var(--base-background-color);
+    color: var(--base-color);
+}
+
+.head-cage {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 500px;
+    gap: 1.25rem;
+    padding-left: 6rem;
+}
+
+.project-icon,
+.task-icon {
+    width: 42px;
+    height: 42px;
+}
+
+.projects-nav, 
+.tasks-nav {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    height: 60px;
+}
+
+.projects-nav button, 
+.tasks-nav button {
+    font-size: 1.25rem;
+    width: 110px;
+    height: 30px;
+}
+
+.projects-nav button:nth-of-type(1),
+.projects-nav button:nth-of-type(2), 
+.projects-nav button:nth-of-type(3), 
+.tasks-nav button:nth-of-type(1),
+.tasks-nav button:nth-of-type(2),
+.tasks-nav button:nth-of-type(3) {
+    border: none;
+    color: var(--navigation-btn-color);
+    background-color: var(--base-background-color);
+    font-weight: 600;
+}
+
+.new-task, 
+.new-project {
+    margin-left: auto;
+    border: none;
+    background-color: rgb(0, 0, 255);
+    color: azure;
+    border-radius: 5px;
+}
