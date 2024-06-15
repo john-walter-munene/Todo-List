@@ -1,6 +1,8 @@
 // import _ from 'lodash';
-import { projectsBoard } from './projectsBoard';
-import { taskUpdater } from './utitilityFunctions';
+
+import './styles.css';
+import { setTheme } from './utitilityFunctions';
+import { screenController } from './screenController';
 
 // function component() {
 //     const element = document.createElement('div');
@@ -12,7 +14,9 @@ import { taskUpdater } from './utitilityFunctions';
 //   }
 // document.body.appendChild(component());
 
-console.log("from index.js");
-projectsBoard.updateSpecificTaskInChosenProject(1, 1, taskUpdater());
-projectsBoard.printAllTasksInProjectBoard();
-projectsBoard.printProjectsBoard();
+// User theme toggle.
+let themeToggler = document.querySelector('.theme-toggle');
+themeToggler.addEventListener('click', setTheme);
+
+// Initial Load.
+screenController.initialize();

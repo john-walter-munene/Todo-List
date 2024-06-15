@@ -45,9 +45,21 @@ function availabilityChecker(itemIndex, myArray) {
     return itemIndex > myArray.length - 1;
 }
 
+// Toggle Application theme.
+function setTheme() {
+    const root = document.documentElement;
+    const currentTheme = root.classList.contains('dark') ? 'dark' : 'light';
+    const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+    
+    // Remove the current theme class and add the new theme class
+    root.classList.remove(currentTheme);
+    root.classList.add(newTheme);
+}
+
 export { 
     projectGenerator, 
     taskGenerator, 
     availabilityChecker, 
     taskUpdater,
+    setTheme,
 };
