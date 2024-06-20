@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'Quattrocento_Sans';
-    src: url('./fonts/Quattrocento_Sans/QuattrocentoSans-Regular.ttf') format('ttf');
-        font-weight: 600;
-        font-style: normal;
-  } 
+    src: url('./fonts/Quattrocento_Sans/QuattrocentoSans-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
 
 * {
     font-family: 'Quattrocento_Sans', Arial, Helvetica, sans-serif;
@@ -12,13 +12,18 @@
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 /* Dark Mode Theme build base */
 :root.dark {
     --base-background-color: rgb(23, 23, 23);
     --base-color: rgb(240, 255, 255);
     --border-btn: 1px solid rgb(220, 220, 220);
     --color-btn-bg: rgb(36, 36, 36);
-    --navigation-btn-color: rgb(63, 63, 70);
+    --headings-color: rgb(63, 63, 70);
+    --tables-border: 1px solid rgb(237, 233, 254);
 }
 
 /* Light Mode build base */
@@ -27,9 +32,11 @@
     --base-color: rgb(23, 23, 23);
     --border-btn: 1px solid rgb(36, 36, 36);
     --color-btn-bg: rgb(220, 220, 220);
-    --navigation-btn-color: rgb(24, 24, 27);
+    --headings-color: rgb(43, 43, 44);
+    --tables-border: 1px solid hsl(240, 6%, 10%);
 }
 
+/* Application header */
 header {
     display: flex;
     height: 80px;
@@ -39,6 +46,7 @@ header {
     color: var(--base-color);
     min-width: 500px;
     border-bottom: var(--border-btn);
+    border-top: var(--border-btn);
 }
 
 .theme-toggle {
@@ -58,6 +66,7 @@ header h1 {
 .tasks-heading {
     background-color: var(--base-background-color);
     color: var(--base-color);
+    padding-top: 10px;
 }
 
 .head-cage {
@@ -89,9 +98,10 @@ header h1 {
 
 .projects-nav button, 
 .tasks-nav button {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     width: 110px;
     height: 30px;
+    font-weight: bold;
 }
 
 .projects-nav button:nth-of-type(1),
@@ -101,7 +111,7 @@ header h1 {
 .tasks-nav button:nth-of-type(2),
 .tasks-nav button:nth-of-type(3) {
     border: none;
-    color: var(--navigation-btn-color);
+    color: var(--headings-color);
     background-color: var(--base-background-color);
     font-weight: 600;
 }
@@ -113,4 +123,112 @@ header h1 {
     background-color: rgb(0, 0, 255);
     color: azure;
     border-radius: 5px;
+}
+
+/* Project and Tasks shared */
+.my-projects,
+.my-tasks {
+    background-color: var(--base-background-color);
+    min-height: calc(100vh - 210px);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.2rem;
+}
+.my-projects table,
+.my-tasks table {
+    table-layout: fixed;
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    border-bottom: var(--tables-border);
+    border-top: var(--tables-border);
+}
+
+thead {
+    background-color: var(--base-background-color);
+    color: var(--headings-color);
+    font-family: helvetica, arial, sans-serif;
+}
+
+thead th {
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 15px;
+    letter-spacing: 2px;
+}
+
+tbody td {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--base-color);
+    background-color: var(--base-background-color);
+}
+
+tbody tr {
+    height: 30px;
+}
+
+thead th, 
+tbody td {
+    border: var(--tables-border);
+}
+
+/* Project styles */
+.my-projects thead th:nth-child(1) {
+    width: 30%;
+}
+
+.my-projects thead th:nth-child(2) {
+    width: 10%;
+}
+
+.my-projects thead th:nth-child(3) {
+    width: 20%;
+}
+
+.my-projects thead th:nth-child(4) {
+    width: 30%;
+}
+
+.my-projects thead th:nth-child(5) {
+    width: 10%;
+}
+
+
+/* Task Styles */
+.my-tasks thead th:nth-child(1) {
+    width: 24%;
+}
+
+.my-tasks thead th:nth-child(2) {
+    width: 12%;
+}
+
+.my-tasks thead th:nth-child(3) {
+    width: 15%;
+}
+
+.my-tasks thead th:nth-child(4) {
+    width: 15%;
+}
+
+.my-tasks thead th:nth-child(5) {
+    width: 10%;
+}
+
+.my-tasks thead th:nth-child(6) {
+    width: 24%;
+}
+
+/* Active tabs in project and tasks */
+#active {
+    color: var(--base-color);
+    border-bottom: 2px solid var(--base-color);
+    padding-bottom: 5px;
 }

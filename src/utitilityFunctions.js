@@ -15,6 +15,19 @@ function projectGenerator() {
     return newProject;
 }
 
+function projectGeneratorTwo() {
+    let newProject = new Project(
+        "Sample Project: Testing",
+        "Planning",
+        "John Walter",
+        "May 30, 2024",
+        "June 26, 2024",
+        "Low",
+        "I am your first project."
+    );
+    return newProject;
+}
+
 // Create a task to test my works.
 function taskGenerator() {
     let newTask = new Task(
@@ -58,6 +71,7 @@ function setTheme() {
 
 export { 
     projectGenerator, 
+    projectGeneratorTwo,
     taskGenerator, 
     availabilityChecker, 
     taskUpdater,

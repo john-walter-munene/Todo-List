@@ -1,5 +1,5 @@
-import { createProjectsHeading } from "./loadProjects";
-import { createTasksHeading } from "./loadTasks";
+import { createProjectsHeading, displayProjects } from "./loadProjects";
+import { createTasksHeading, displayTasks } from "./loadTasks";
 
 // Screen controller for DOM
 class ScreenController {
@@ -19,6 +19,8 @@ class ScreenController {
         this.currentScreen = createProjectsHeading();
         this.contentHolder.appendChild(this.currentScreen);
         this.addEventListeners();
+        const projects = displayProjects();
+        this.contentHolder.appendChild(projects);
     }
 
     // Switch to tasks.
@@ -27,12 +29,15 @@ class ScreenController {
         this.currentScreen = createTasksHeading();
         this.contentHolder.appendChild(this.currentScreen);
         this.addEventListeners();
+        const tasks = displayTasks();
+        this.contentHolder.appendChild(tasks);
     }
 
     // Clear the current screen.
     clearCurrentScreen() {
         if (this.currentScreen) {
-            this.contentHolder.removeChild(this.currentScreen);
+            // this.contentHolder.removeChild(this.currentScreen);
+            this.contentHolder.textContent = '';
             this.currentScreen = null;
         }
     }
