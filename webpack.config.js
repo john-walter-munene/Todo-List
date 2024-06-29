@@ -12,6 +12,7 @@ module.exports = {
         loadProjects: './src/loadProjects.js',
         loadTasks: './src/loadTasks.js',
         screenController: './src/screenController.js',
+        createStuff: './src/creatStuff.js',
     },
     plugins: [
         new HtmlWebpackPlugin({

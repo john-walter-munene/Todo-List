@@ -23,7 +23,7 @@ const projectsBoard = (function ProjectsBoard() {
         myProjects.push(project);
     };
 
-    // Add task to default project.
+    // Add task to default project, or choosen one.
     const addTaskToProject = (projectChoiceViaIndex = 0, task) => {
         myProjects[projectChoiceViaIndex].addNewTaskToProject(task);
     };

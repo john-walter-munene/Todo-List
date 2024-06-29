@@ -18,22 +18,30 @@ html, body {
 
 /* Dark Mode Theme build base */
 :root.dark {
+    /* Application base */
     --base-background-color: rgb(23, 23, 23);
-    --base-color: rgb(240, 255, 255);
+    --base-color: rgb(252, 252, 252);
     --border-btn: 1px solid rgb(220, 220, 220);
     --color-btn-bg: rgb(36, 36, 36);
     --headings-color: rgb(63, 63, 70);
     --tables-border: 1px solid rgb(237, 233, 254);
+
+    /* Forms*/
+    --form-background-color: rgb(35, 35, 35);
 }
 
 /* Light Mode build base */
 :root.light {
-    --base-background-color: rgb(240, 255, 255);
+    /* Application base */
+    --base-background-color: rgb(252, 252, 252);
     --base-color: rgb(23, 23, 23);
     --border-btn: 1px solid rgb(36, 36, 36);
     --color-btn-bg: rgb(220, 220, 220);
     --headings-color: rgb(43, 43, 44);
     --tables-border: 1px solid hsl(240, 6%, 10%);
+
+    /* Forms */
+    --form-background-color: rgb(254, 253, 255);
 }
 
 /* Application header */
@@ -47,6 +55,7 @@ header {
     min-width: 500px;
     border-bottom: var(--border-btn);
     border-top: var(--border-btn);
+    min-width: 1200px;
 }
 
 .theme-toggle {
@@ -67,6 +76,7 @@ header h1 {
     background-color: var(--base-background-color);
     color: var(--base-color);
     padding-top: 10px;
+    min-width: 1200px;
 }
 
 .head-cage {
@@ -133,6 +143,7 @@ header h1 {
     display: flex;
     flex-direction: column;
     padding-bottom: 1.2rem;
+    min-width: 1200px;
 }
 .my-projects table,
 .my-tasks table {
@@ -181,11 +192,11 @@ tbody td {
 
 /* Project styles */
 .my-projects thead th:nth-child(1) {
-    width: 30%;
+    width: 26%;
 }
 
 .my-projects thead th:nth-child(2) {
-    width: 10%;
+    width: 14%;
 }
 
 .my-projects thead th:nth-child(3) {
@@ -231,4 +242,189 @@ tbody td {
     color: var(--base-color);
     border-bottom: 2px solid var(--base-color);
     padding-bottom: 5px;
+}
+
+/* Project form */
+#content {
+    position: relative;
+}
+
+.new-project-form,
+.new-task-form {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Project and Task Forms */
+.new-project-form,
+.new-task-form {
+    --form-input-color: rgb(23, 23, 23);
+
+    width: 42vw;
+    min-width: 600px;
+    height: calc(100vh - 85px);
+    background-color: var(--form-background-color);
+    border: var(--tables-border);
+}
+
+form * {
+    font: inherit;
+    font-size: 100%;
+    color: var(--base-color);
+}
+ 
+form input {
+    color: var(--form-input-color);
+}
+
+form label {
+    color: var(--base-color);
+}
+
+.project-form,
+.task-form {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    appearance: none;
+}
+
+.project-name,
+.task-name {
+    height: 2em;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.project-name label,
+.task-name label {
+    font-size: 2em;
+    font-weight: 1000;
+}
+
+.project-name input,
+.task-name input {
+    height: 2em;
+    box-sizing: border-box;
+}
+
+.project-details,
+.task-details {
+    height: 11em;
+    display: flex;
+    justify-content: start;
+    border: none;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.details-holder,
+.details-input {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.details-holder * {
+    font-size: 1.2em;
+    font-weight: bolder;
+    margin-left: 50px;
+}
+
+/* Inputs */
+#project-name,
+#task-name,
+#project-name:focus,
+#task-name:focus,
+#project-name:active {
+    background-color: var(--form-background-color);
+    color: var(--base-color);
+    width: 50%;
+    border: none;
+    font-size: 1.3em;
+    padding: 0;
+}
+
+.details-input {
+    width: 50.5%;
+}
+
+.details-input input {
+    height: 1.5rem;
+}
+
+#project-owner,
+#project-owner:focus,
+#task-assignee, 
+#task-assignee:focus {
+    background-color: var(--form-background-color);
+    color: var(--base-color);
+    border: none;
+}
+
+form h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+textarea,
+textarea:focus {
+    border: none;
+    background-color: var(--form-background-color);
+    color: var(--base-color);
+    resize: none;
+    font-size: 1.2em;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+select, 
+select:focus{
+    appearance: none;
+    color: var(--base-color);
+    background-color: var(--form-background-color);
+    height: 1.5rem;
+    border: none;
+}
+
+.select-wrapper {
+    position: relative;
+}
+  
+.select-wrapper::after {
+    content: "▼";
+    font-size: 1rem;
+    top: 6px;
+    right: 10px;
+    position: absolute;
+}
+
+input[type="date"],
+input[type="date"]:focus {
+    border: none;
+    background-color: var(--form-background-color);
+    color: var(--base-color);
+}
+
+.button-holders {
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.button-holders button {
+    border: var(--border-btn);
+    background-color: var(--base-background-color);
+    color: var(--base-color);
+    font-size: 1.125rem;
+    padding: 10px 20px;
 }
