@@ -1,6 +1,6 @@
 import { projectsBoard } from "./projectsBoard";
 import { ProjectStuffCreator } from "./creatStuff";
 
-class ProjectsStuffEditor{
+class ProjectsStuffEditor extends ProjectStuffCreator {
 
 }

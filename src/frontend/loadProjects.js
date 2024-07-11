@@ -1,7 +1,9 @@
-import { projectsBoard } from './projectsBoard';
+import { projectsBoard } from '../backend/projectsBoard';
+import { priorityStyling, statusStyling } from '../resources/utitilityFunctions';
+import { ExpandProjectSeeContent } from './expandProjectStuff';
 
 // Handles projects UI
-import projectsIconImage from './images/project.svg';
+import projectsIconImage from '../images/project.svg';
 
 function createProjectsHeading() {
     // Create a heading holder
@@ -52,10 +54,7 @@ function createProjectsHeading() {
     newProjectButton.textContent = 'New';
 
     // Add buttons to their holder
-    projectsNavigationsHolder.appendChild(allProjectsButton);
-    projectsNavigationsHolder.appendChild(boardViewButton);
-    projectsNavigationsHolder.appendChild(taskPageButton);
-    projectsNavigationsHolder.appendChild(newProjectButton);
+    projectsNavigationsHolder.append(allProjectsButton, boardViewButton, taskPageButton, newProjectButton);
 
     // Add heading and navigations to overall holder.
     projectsHeadingContent.appendChild(topHeadsCage);
@@ -88,12 +87,31 @@ class ShowProject {
         projectDatesBox.textContent = `${this.project.startDate} → ${this.project.dueDate}`;
         projectPriorityBox.textContent = this.project.projectPriority;
 
+        // Priority and Status styling.
+        priorityStyling(projectPriorityBox);
+        statusStyling(projectStatusBox);
+
+        // Button to view expand a project.
+        // Add button to project name box.
+        let tasksInProjectButton = document.createElement('button');
+        tasksInProjectButton.textContent = 'OPEN';
+        tasksInProjectButton.setAttribute('class', 'expand-project');
+        projectNameBox.appendChild(tasksInProjectButton);
+
+        // Expand project on click
+        tasksInProjectButton.addEventListener('click', () => viewProjectContent(tasksInProjectButton));
+
+        // Add event listeners for hover effect
+        projectRow.addEventListener('mouseenter', () => {
+            tasksInProjectButton.style.display = 'inline-block';
+        });
+
+        projectRow.addEventListener('mouseleave', () => {
+            tasksInProjectButton.style.display = 'none';
+        });
+
         // Add each content piece to the row.
-        projectRow.appendChild(projectNameBox);
-        projectRow.appendChild(projectStatusBox);
-        projectRow.appendChild(projectOwnerBox);
-        projectRow.appendChild(projectDatesBox);
-        projectRow.appendChild(projectPriorityBox);
+        projectRow.append(projectNameBox, projectStatusBox, projectOwnerBox, projectDatesBox, projectPriorityBox);
 
         return projectRow;
     }
@@ -126,11 +144,7 @@ function displayProjects() {
     ProjectPriorityHead.textContent = 'Priority';
 
     // Consolidate heading items.
-    projectsTableHeadRow.appendChild(projectNameHead);
-    projectsTableHeadRow.appendChild(projectStatusHead);
-    projectsTableHeadRow.appendChild(projectOwnerHead);
-    projectsTableHeadRow.appendChild(projectDateHead);
-    projectsTableHeadRow.appendChild(ProjectPriorityHead);
+    projectsTableHeadRow.append(projectNameHead, projectStatusHead, projectOwnerHead, projectDateHead, ProjectPriorityHead);
 
     projectsTableHead.appendChild(projectsTableHeadRow);
 
@@ -145,12 +159,27 @@ function displayProjects() {
     for (let counter = 0; counter < availableProjects.length; counter++) {
         const currentProject = availableProjects[counter];
         const currentProjectUIComponent = new ShowProject(currentProject).createProjectComponent();
+        currentProjectUIComponent.setAttribute('project-index', counter);
         projectsTableBody.appendChild(currentProjectUIComponent);
     }
 
     projectsTable.appendChild(projectsTableBody);
     myProjects.appendChild(projectsTable);
     return myProjects;
+}
+
+function viewProjectContent(openButton) {
+    // Get content Holder.
+    let contentHolder = document.querySelector('#content');
+
+    // Get project to view.
+    let projectRow = openButton.parentElement.parentElement;
+    let projectIndex = projectRow.getAttribute('project-index');
+    let clickedProject = projectsBoard.getProjectsBoard()[projectIndex];
+
+    // Create project detials UI component and add it screen.
+    let clickedProjectContent = new ExpandProjectSeeContent(clickedProject).visualizeProjectContent();
+    contentHolder.appendChild(clickedProjectContent);
 }
 
 export { createProjectsHeading, displayProjects };

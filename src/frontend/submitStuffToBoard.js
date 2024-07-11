@@ -1,6 +1,6 @@
-import { projectsBoard } from "./projectsBoard";
-import { Project } from "./project";
-import { Task } from "./task";
+import { projectsBoard } from "../backend/projectsBoard";
+import { Project } from "../backend/project";
+import { Task } from "../backend/task";
 
 class StuffSubmissionHandler {
     constructor (contentHolder) {
@@ -14,7 +14,6 @@ class StuffSubmissionHandler {
 
         // Get form input values.
         let projectNameValue = projectForm.querySelector('#project-name').value; 
-        console.log(projectNameValue);
         let projectStatusValue = projectForm.querySelector('#project-status').value;
         let projectOwnerValue = projectForm.querySelector('#project-owner').value;
         let projectStartDateValue = projectForm.querySelector('#start-date').value;
@@ -32,7 +31,7 @@ class StuffSubmissionHandler {
             projectPriorityValue, 
             projectSummaryValue,
           );
-        
+
         //  Add project to board.
         projectsBoard.addNewProjectToBoard(newProject);
     }
@@ -61,8 +60,13 @@ class StuffSubmissionHandler {
             taskPriorityValue,
         );
 
+        // Choosen project Index.
+        let taskProjectChoiceIndex = parseInt(taskProjectChoiceValue);
+
+        console.log(newTask, taskProjectChoiceIndex);
+
         // Add task to chosen project.
-        projectsBoard.addTaskToProject(parseInt(taskProjectChoiceValue), newTask);
+        projectsBoard.addTaskToProject(taskProjectChoiceIndex, newTask);
     }
 }
 

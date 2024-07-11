@@ -1,8 +1,8 @@
 // import _ from 'lodash';
 
-import './styles.css';
-import { setTheme } from './utitilityFunctions';
-import { screenController } from './screenController';
+import './resources/styles.css';
+import { setTheme } from './resources/utitilityFunctions';
+import { screenController } from './frontend/screenController';
 
 // function component() {
 //     const element = document.createElement('div');
