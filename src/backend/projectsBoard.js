@@ -1,4 +1,10 @@
-import { projectGenerator, projectGeneratorTwo, taskGenerator, availabilityChecker } from "./utitilityFunctions";
+import { 
+    projectGenerator, 
+    projectGeneratorTwo, 
+    projectGeneratorThree, 
+    taskGenerator, 
+    availabilityChecker 
+} from "../resources/utitilityFunctions";
 
 // Create a projects board to control all my projects (single instance).
 const projectsBoard = (function ProjectsBoard() {
@@ -25,7 +31,8 @@ const projectsBoard = (function ProjectsBoard() {
 
     // Add task to default project, or choosen one.
     const addTaskToProject = (projectChoiceViaIndex = 0, task) => {
-        myProjects[projectChoiceViaIndex].addNewTaskToProject(task);
+        let choosenProject = myProjects[projectChoiceViaIndex];
+        choosenProject.addNewTaskToProject(task);
     };
 
     // View tasks in each project.
@@ -35,7 +42,7 @@ const projectsBoard = (function ProjectsBoard() {
             return;
         }
 
-        console.log(`Viewing tasks in project number: ${projectIndex + 1}`);
+        console.log(`Viewing tasks in project number: ${parseInt(projectIndex) + 1}`);
         myProjects[projectIndex].printTasksInProject();
     };
 
@@ -104,6 +111,7 @@ const projectsBoard = (function ProjectsBoard() {
 // Add two duplicate projects for testing.
 projectsBoard.addNewProjectToBoard(projectGenerator());
 projectsBoard.addNewProjectToBoard(projectGeneratorTwo());
+projectsBoard.addNewProjectToBoard(projectGeneratorThree());
 
 // Create new tasks, add it to my default project.
 projectsBoard.addTaskToProject(0, taskGenerator());

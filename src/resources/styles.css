@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Quattrocento_Sans';
-    src: url('./fonts/Quattrocento_Sans/QuattrocentoSans-Regular.ttf') format('truetype');
+    src: url('../fonts/Quattrocento_Sans/QuattrocentoSans-Regular.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
@@ -33,15 +33,16 @@ html, body {
 /* Light Mode build base */
 :root.light {
     /* Application base */
-    --base-background-color: rgb(252, 252, 252);
-    --base-color: rgb(23, 23, 23);
+    --base-background-color: rgb(87, 15, 186);
+    /* --base-color: rgb(23, 23, 23); */
+    --base-color: rgb(252, 252, 252);
     --border-btn: 1px solid rgb(36, 36, 36);
-    --color-btn-bg: rgb(220, 220, 220);
+    --color-btn-bg: rgb(68, 79, 238);
     --headings-color: rgb(43, 43, 44);
     --tables-border: 1px solid hsl(240, 6%, 10%);
 
     /* Forms */
-    --form-background-color: rgb(254, 253, 255);
+    --form-background-color: rgb(68, 8, 152);
 }
 
 /* Application header */
@@ -185,6 +186,28 @@ tbody tr {
     height: 30px;
 }
 
+tbody tr td:nth-child(1) {
+    text-align: left;
+    position: relative;
+}
+
+.expand-project,
+.expand-task {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 60px;
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--base-color);
+    border: none;
+    background-color: var(--form-background-color);
+    display: none;
+    text-align: center;
+}
+
 thead th, 
 tbody td {
     border: var(--tables-border);
@@ -193,6 +216,7 @@ tbody td {
 /* Project styles */
 .my-projects thead th:nth-child(1) {
     width: 26%;
+    text-align: left;
 }
 
 .my-projects thead th:nth-child(2) {
@@ -427,4 +451,160 @@ input[type="date"]:focus {
     color: var(--base-color);
     font-size: 1.125rem;
     padding: 10px 20px;
+}
+
+/* changing colors for Priority in projects and tasks */
+.low {
+    background-color: green;
+}
+
+.medium {
+    background-color: goldenrod;
+}
+
+.high {
+    background-color: brown;
+}
+
+/*Changing colors for Status in projects and tasks*/
+.not-started {
+    background-color: rgb(196, 76, 110);
+}
+
+.in-progress {
+    background-color: rgb(8, 51, 68);
+}
+
+.done {
+    background-color: #22ca5d;
+}
+
+/* Expanded projects view */
+/* Absolutely relative from #content */
+.project-container,
+.task-container {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    min-height: calc(100vh - 80px);
+    background-color: var(--base-background-color);
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+
+.project-view-content,
+.task-view-content {
+    margin: 0 auto;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    background-color: var(--base-background-color);
+    color: var(--base-color);
+}
+
+.project-view-content *,
+.task-view-content * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.view-h1 {
+    margin-top: 15px;
+    font-weight: 1000;
+    font-size: 36px;
+}
+
+.project-details-container,
+.task-details-container {
+    display: flex;
+    justify-content: start;
+    gap: 100px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.pjt-req-view,
+.about-project,
+.task-view,
+.pjt-btns-holder,
+.tsk-req-view,
+.about-task,
+.tsk-btns-holder {
+    margin-left: 15px;
+}
+
+.pjt-req-view,
+.pjt-req-dtls-view,
+.tsk-req-view,
+.tsk-req-dtls-view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.about-project h2,
+.about-task h2 {
+    margin-bottom: 10px;
+}
+
+.about-project p,
+.about-task p {
+    margin-bottom: 20px;
+}
+
+.task-view h2 {
+    margin-bottom: 10px;
+}
+
+.task-view {
+    margin-bottom: 20px;
+}
+
+.pjt-btns-holder,
+.tsk-btns-holder {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 30px;
+}
+
+.pjt-btns-holder button,
+.tsk-btns-holder button {
+    color: azure;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 6px 20px;
+    width: 100px;
+    font-weight: 600;
+}
+
+.close-project,
+.close-task {
+    margin-left: 50px;
+    background-color: #14532d;
+}
+
+.edit-project,
+.edit-task {
+    background-color: rgb(8, 51, 68);
+}
+
+.delete-project,
+.delete-task {
+    background-color: rgb(80, 7, 36);
+}
+
+.task-view table {
+    table-layout: fixed;
+    border-collapse: collapse;
 }

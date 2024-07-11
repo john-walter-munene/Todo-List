@@ -1,4 +1,4 @@
-import { availabilityChecker } from "./utitilityFunctions";
+import { availabilityChecker } from "../resources/utitilityFunctions";
 import { format } from "date-fns";
 // Projects Generator
 class Project {

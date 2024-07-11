@@ -1,4 +1,4 @@
-import { projectsBoard } from "./projectsBoard";
+import { projectsBoard } from "../backend/projectsBoard";
 
 class ProjectStuffCreator {
     createNewProject() {
@@ -144,8 +144,9 @@ class ProjectStuffCreator {
         // Exit button.
         let exitButton = document.createElement('button');
         exitButton.textContent = 'Return';
+        exitButton.setAttribute('type', 'button');
         exitButton.setAttribute('class', 'exit-project-form');
-        exitButton.setAttribute('value', 'default');
+        
         // Consolidate buttons.
         formButtons.append(submitButton, exitButton);
 
@@ -256,7 +257,7 @@ class ProjectStuffCreator {
         for (let projectIndex = 0; projectIndex < availableProjects.length; projectIndex++) {
             const projectAsAnOption = document.createElement('option');
             projectAsAnOption.textContent = availableProjects[projectIndex].projectName;
-            projectAsAnOption.setAttribute('value', projectIndex + 1);
+            projectAsAnOption.setAttribute('value', projectIndex);
             taskProjectChoiceInput.append(projectAsAnOption);
         }
 
@@ -313,8 +314,8 @@ class ProjectStuffCreator {
         // Exit button.
         let exitButton = document.createElement('button');
         exitButton.textContent = 'Return';
-        exitButton.setAttribute('class', 'exit');
-        exitButton.setAttribute('value', 'default');
+        exitButton.setAttribute('type', 'button');
+        exitButton.setAttribute('class', 'exit-task-form');
         // Consolidate buttons
         formButtons.append(submitButton, exitButton);
     
@@ -326,19 +327,4 @@ class ProjectStuffCreator {
     }   
 }
 
-class FormClearer {
-    constructor (contentHolder) {
-        this.contentHolder = contentHolder;
-    }
-
-    clearFormElementValues() {
-        let applicationForm = this.contentHolder.querySelector('form');
-        let applicationFormInputs = applicationForm.querySelectorAll('input');
-        applicationFormInputs.array.forEach(input => {
-            input.value = '';
-            console.log("Form Cleared");
-        });
-    }
-}
-
-export { ProjectStuffCreator, FormClearer };
+export { ProjectStuffCreator };
