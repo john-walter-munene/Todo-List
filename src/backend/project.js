@@ -36,7 +36,7 @@ class Project {
             return;
         }
 
-        console.log(`Logging task: ${taskIndex + 1}`);
+        console.log(`Logging task: ${parseInt(taskIndex) + 1}`);
         console.log(this.projectTasks[taskIndex]);
     }
 

@@ -165,6 +165,16 @@ function displayProjects() {
 
     projectsTable.appendChild(projectsTableBody);
     myProjects.appendChild(projectsTable);
+
+    // Alert user if no projects available.
+    if (availableProjects.length === 0) {
+        myProjects.removeChild(projectsTable);
+        const zeroProjectsAlert = document.createElement('p');
+        zeroProjectsAlert.setAttribute('class', 'zero-projects');
+        zeroProjectsAlert.textContent = 'Ooops! No projects available. Could you create one?';
+        myProjects.appendChild(zeroProjectsAlert);
+    }
+    
     return myProjects;
 }
 
@@ -178,7 +188,8 @@ function viewProjectContent(openButton) {
     let clickedProject = projectsBoard.getProjectsBoard()[projectIndex];
 
     // Create project detials UI component and add it screen.
-    let clickedProjectContent = new ExpandProjectSeeContent(clickedProject).visualizeProjectContent();
+    // Pass it and Index attribute for editing/deleting.
+    let clickedProjectContent = new ExpandProjectSeeContent(clickedProject).visualizeProjectContent(projectIndex);
     contentHolder.appendChild(clickedProjectContent);
 }
 

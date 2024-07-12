@@ -63,8 +63,6 @@ class StuffSubmissionHandler {
         // Choosen project Index.
         let taskProjectChoiceIndex = parseInt(taskProjectChoiceValue);
 
-        console.log(newTask, taskProjectChoiceIndex);
-
         // Add task to chosen project.
         projectsBoard.addTaskToProject(taskProjectChoiceIndex, newTask);
     }

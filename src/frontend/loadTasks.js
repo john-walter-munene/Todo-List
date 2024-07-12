@@ -25,8 +25,7 @@ function createTasksHeading() {
     tasksPageHead.textContent = 'Tasks';
 
     // Consolidate Task lead content
-    topHeadsCage.appendChild(taskIcon);
-    topHeadsCage.appendChild(tasksPageHead);
+    topHeadsCage.append(taskIcon, tasksPageHead);
 
     // Create a buttons holder, buttons, set attributes and add content.
     let tasksNavigationHolder = document.createElement('div');
@@ -54,14 +53,10 @@ function createTasksHeading() {
     newTasksButton.textContent = 'New';
 
     // Add buttons to their holder.
-    tasksNavigationHolder.appendChild(byProjectButton);
-    tasksNavigationHolder.appendChild(allTasksButton);
-    tasksNavigationHolder.appendChild(projectsPageButton);
-    tasksNavigationHolder.appendChild(newTasksButton);
+    tasksNavigationHolder.append(byProjectButton, allTasksButton, projectsPageButton, newTasksButton);
 
     // Add heading and navigations to overall holder.
-    tasksHeadingContent.appendChild(topHeadsCage);
-    tasksHeadingContent.appendChild(tasksNavigationHolder);
+    tasksHeadingContent.append(topHeadsCage, tasksNavigationHolder);
 
     // Return tasks heading component.
     return tasksHeadingContent;
@@ -162,10 +157,13 @@ function displayTasks() {
 
     // Add all tasks to table.
     const availableProjects = projectsBoard.getProjectsBoard();
+    let zeroTaskAlertCounter = 0;
+
     for (let projectCounter = 0; projectCounter < availableProjects.length; projectCounter++) {
         const currentProject = availableProjects[projectCounter];
         const currentProjectTasks = currentProject.getProjectTasks();
         for (let taskCounter = 0; taskCounter < currentProjectTasks.length; taskCounter++) {
+            zeroTaskAlertCounter += 1;
             const projectNameForTask = currentProject.projectName; 
             const currentTask = currentProjectTasks[taskCounter];
             const currentTaskUIComponent = new ShowTask(currentTask).createTaskComponent(projectNameForTask);
@@ -179,6 +177,22 @@ function displayTasks() {
 
     tasksTable.appendChild(tasksTableBody);
     myTasks.appendChild(tasksTable);
+
+    // Alert user in no tasks available.
+    if (availableProjects.length === 0) {
+        myTasks.removeChild(tasksTable);
+        const zeroTasksAlert = document.createElement('p');
+        zeroTasksAlert.setAttribute('class', 'zero-tasks');
+        zeroTasksAlert.textContent = 'Ooops! No Tasks Available. Please create a project then create tasks in it.';
+        myTasks.appendChild(zeroTasksAlert);
+    } else if (zeroTaskAlertCounter === 0){
+        myTasks.removeChild(tasksTable);
+        const zeroTasksAlert = document.createElement('p');
+        zeroTasksAlert.setAttribute('class', 'zero-tasks');
+        zeroTasksAlert.textContent = 'Ooops! No Tasks Available. Please create a task.';
+        myTasks.appendChild(zeroTasksAlert);
+    }
+
     return myTasks;
 }
 
@@ -195,6 +209,12 @@ function viewTaskContent(openButton) {
     
     // Create task details UI component and add it to screen.
     let clickedTaskContent = new ExpandedTaskSeeContent(clickedTask).visualizeTaskContent();
+
+    // Attach project index and task index to component.
+    clickedTaskContent.setAttribute('project-index', taskProjectIndex);
+    clickedTaskContent.setAttribute('task-index', taskIndex);
+
+    // Add Task Content to page.
     contentHolder.appendChild(clickedTaskContent);
 }
 

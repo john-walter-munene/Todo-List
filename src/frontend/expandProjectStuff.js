@@ -37,10 +37,11 @@ class ExpandProjectSeeContent {
         this.projectToView = projectToView;
     }
 
-    visualizeProjectContent() {
+    visualizeProjectContent(projectIndex) {
         // Overall project container.
         let projectContainer = document.createElement('div');
         projectContainer.setAttribute('class', 'project-container');
+        projectContainer.setAttribute('project-index', projectIndex);
 
         // Project contents holder.
         let projectContents = document.createElement('div');
@@ -168,6 +169,7 @@ class ExpandProjectSeeContent {
 
         // Add actions to buttons.
         closeProjectButton.addEventListener('click', () => closeOpenProject());
+        deleteProjectButton.addEventListener('click', () => deleteOpenProject());
 
         // Put buttons in their holder.
         projectButtonsHolder.append(closeProjectButton, editProjectButton, deleteProjectButton);
@@ -185,8 +187,14 @@ class ExpandProjectSeeContent {
     }
 }
 
+// Close project
 function closeOpenProject() {
     projectWorkFlowManager.closeAProject();
+}
+
+// Delete project.
+function deleteOpenProject() {
+    projectWorkFlowManager.deleteAProject();
 }
 
 export { ExpandProjectSeeContent };
