@@ -136,6 +136,15 @@ header h1 {
     border-radius: 5px;
 }
 
+/* Zero Projects or Tasks */
+.zero-projects,
+.zero-tasks {
+    text-align: center;
+    color: var(--base-color);
+    font-size: 1.5rem;
+    margin-top: 3rem;
+}
+
 /* Project and Tasks shared */
 .my-projects,
 .my-tasks {

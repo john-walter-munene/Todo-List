@@ -96,6 +96,7 @@ class ExpandedTaskSeeContent {
 
         // Add actions to buttons.
         closeTaskButton.addEventListener('click', () => closeOpenTask());
+        deleteTaskButton.addEventListener('click', () => deleteOpenTask());
 
         // Put buttons in their holder.
         taskButtonsHolder.append(closeTaskButton, editTaskButton, deleteTaskButton);
@@ -113,6 +114,11 @@ class ExpandedTaskSeeContent {
 // Close open task.
 function closeOpenTask() {
     taskWorkFlowManager.closeATask()
+}
+
+// Delete open task.
+function deleteOpenTask() {
+    taskWorkFlowManager.deleteATask();
 }
 
 export { ExpandedTaskSeeContent };

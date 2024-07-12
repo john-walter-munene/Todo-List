@@ -77,7 +77,7 @@ const projectsBoard = (function ProjectsBoard() {
         }
     
         console.log(`Existing projects before deleting: ${myProjects.length}`);
-        console.log(`Deleting project number: ${projectIndex + 1}`);
+        console.log(`Deleting project number: ${parseInt(projectIndex) + 1}`);
     
         myProjects.splice(projectIndex, 1);
         console.log(`Projects left: ${myProjects.length}`);
@@ -90,7 +90,7 @@ const projectsBoard = (function ProjectsBoard() {
             return;
         }
 
-        console.log(`Deleting task in project: ${projectIndex + 1}`);
+        console.log(`Deleting task in project: ${parseInt(projectIndex) + 1}`);
         myProjects[projectIndex].deleteTaskFromProject(taskIndex);
     };
 
