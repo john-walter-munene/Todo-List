@@ -16,7 +16,7 @@ class Task {
         this.taskAssignee = newTaskDetails.taskAssignee;
         this.taskStatus = newTaskDetails.taskStatus;
         this.taskDescription = newTaskDetails.taskDescription;
-        this.dueDate = newTaskDetails.dueDate;
+        this.dueDate = format(new Date(newTaskDetails.dueDate), "MMMM dd, yyyy");
         this.taskPriority = newTaskDetails.taskPriority;
     }
 }

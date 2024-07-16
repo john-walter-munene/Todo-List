@@ -101,6 +101,7 @@ class ScreenController {
             this.switchToProjects();
         });
 
+        // Subtmit a task.
         const taskSubmitButton = this.contentHolder.querySelector('.submit-task');
         if (taskSubmitButton) taskSubmitButton.addEventListener('click', (event) => {
             event.preventDefault(); 

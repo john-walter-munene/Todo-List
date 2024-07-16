@@ -18,11 +18,15 @@ module.exports = {
         // Frontend files.
         loadProjects: './src/frontend/loadProjects.js',
         expandProjectStuff: './src/frontend/expandProjectStuff.js',
+        projectWorkflow: './src/frontend/projectWorkflow.js',
         loadTasks: './src/frontend/loadTasks.js',
         expandTaskStuff: './src/frontend/expandTaskStuff.js',
+        taskWorkflow: './src/frontend/taskWorkflow.js',
         screenController: './src/frontend/screenController.js',
         createStuff: './src/frontend/createStuff.js',
-
+        editStuff: './src/frontend/editStuff',
+        stuffSubmissions: './src/frontend/submitStuffToBoard.js',
+        editsSubmissions: './src/frontend/editedStuffSubmissions.js',
     },
     plugins: [
         new HtmlWebpackPlugin({

@@ -4,6 +4,7 @@ import { ExpandedTaskSeeContent } from './expandTaskStuff';
 
 // Handles Tasks UI
 import taskIconImage from '../images/task.svg';
+import { taskWorkFlowManager } from './taskWorkflow';
 
 function createTasksHeading() {
     // Create a heading holder
@@ -197,25 +198,36 @@ function displayTasks() {
 }
 
 function viewTaskContent(openButton) {
-    // Get content Holder.
-    let contentHolder = document.querySelector('#content');
-
-    // Get task to view.
+    // Get project and taskIndex.
     let taskRow = openButton.parentElement.parentElement;
     let taskProjectIndex = taskRow.getAttribute('project-index');
     let taskIndex = taskRow.getAttribute('task-index');
-    let clickedTaskProject = projectsBoard.getProjectsBoard()[taskProjectIndex];
+    openTaskByIndex(taskProjectIndex, taskIndex);
+}
+
+function openTaskByIndex( projectIndex,taskIndex) {
+    // Get content Holder.
+    let contentHolder = document.querySelector('#content');
+
+    // Clear any existing task.
+    taskWorkFlowManager.closeATask();
+
+    // Get task to view.
+    let clickedTaskProject = projectsBoard.getProjectsBoard()[projectIndex];
     let clickedTask = clickedTaskProject.projectTasks[taskIndex];
-    
+
     // Create task details UI component and add it to screen.
     let clickedTaskContent = new ExpandedTaskSeeContent(clickedTask).visualizeTaskContent();
 
     // Attach project index and task index to component.
-    clickedTaskContent.setAttribute('project-index', taskProjectIndex);
+    clickedTaskContent.setAttribute('project-index', projectIndex);
     clickedTaskContent.setAttribute('task-index', taskIndex);
 
     // Add Task Content to page.
     contentHolder.appendChild(clickedTaskContent);
+
+    // Add event listeners for newly opened tasks.
+    taskWorkFlowManager.addOpenTaskEventListeners();
 }
 
-export { createTasksHeading, displayTasks };
+export { createTasksHeading, displayTasks, openTaskByIndex };

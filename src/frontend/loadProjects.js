@@ -1,6 +1,7 @@
 import { projectsBoard } from '../backend/projectsBoard';
 import { priorityStyling, statusStyling } from '../resources/utitilityFunctions';
 import { ExpandProjectSeeContent } from './expandProjectStuff';
+import { projectWorkFlowManager } from './projectWorkflow';
 
 // Handles projects UI
 import projectsIconImage from '../images/project.svg';
@@ -98,10 +99,10 @@ class ShowProject {
         tasksInProjectButton.setAttribute('class', 'expand-project');
         projectNameBox.appendChild(tasksInProjectButton);
 
-        // Expand project on click
+        // Expand project on click.
         tasksInProjectButton.addEventListener('click', () => viewProjectContent(tasksInProjectButton));
 
-        // Add event listeners for hover effect
+        // Add event listeners for hover effect.
         projectRow.addEventListener('mouseenter', () => {
             tasksInProjectButton.style.display = 'inline-block';
         });
@@ -145,7 +146,6 @@ function displayProjects() {
 
     // Consolidate heading items.
     projectsTableHeadRow.append(projectNameHead, projectStatusHead, projectOwnerHead, projectDateHead, ProjectPriorityHead);
-
     projectsTableHead.appendChild(projectsTableHeadRow);
 
     // Add header into the overall table.
@@ -179,18 +179,28 @@ function displayProjects() {
 }
 
 function viewProjectContent(openButton) {
-    // Get content Holder.
-    let contentHolder = document.querySelector('#content');
-
     // Get project to view.
     let projectRow = openButton.parentElement.parentElement;
     let projectIndex = projectRow.getAttribute('project-index');
-    let clickedProject = projectsBoard.getProjectsBoard()[projectIndex];
-
-    // Create project detials UI component and add it screen.
-    // Pass it and Index attribute for editing/deleting.
-    let clickedProjectContent = new ExpandProjectSeeContent(clickedProject).visualizeProjectContent(projectIndex);
-    contentHolder.appendChild(clickedProjectContent);
+    openProjectByIndex(projectIndex);
 }
 
-export { createProjectsHeading, displayProjects };
+function openProjectByIndex(projectIndex) {
+    // Get content holder
+    let contentHolder = document.querySelector('#content');
+
+    // Clear any existing project.
+    projectWorkFlowManager.closeAProject();
+
+    // Get project to view
+    let clickedProject = projectsBoard.getProjectsBoard()[projectIndex];
+
+    // Create project details UI component and add it to the screen
+    let clickedProjectContent = new ExpandProjectSeeContent(clickedProject).visualizeProjectContent(projectIndex);
+    contentHolder.appendChild(clickedProjectContent);
+
+    // Add event listeners for newly opened project.
+    projectWorkFlowManager.addOpenProjectEventListeners();
+}
+
+export { createProjectsHeading, displayProjects, openProjectByIndex };

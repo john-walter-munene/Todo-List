@@ -39,7 +39,7 @@ class ProjectStuffCreator {
         // Options.
         let optionOneStatus = document.createElement('option');
         optionOneStatus.textContent = 'Not Started';
-        optionOneStatus.setAttribute('value', 'Not started');
+        optionOneStatus.setAttribute('value', 'Not Started');
         let optionTwoStatus = document.createElement('option');
         optionTwoStatus.textContent = 'In Progress';
         optionTwoStatus.setAttribute('value', 'In Progress');
