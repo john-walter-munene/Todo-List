@@ -3,7 +3,7 @@ import {
     projectGeneratorTwo, 
     projectGeneratorThree, 
     taskGenerator, 
-    availabilityChecker 
+    availabilityChecker, 
 } from "../resources/utitilityFunctions";
 
 // Create a projects board to control all my projects (single instance).
@@ -58,6 +58,17 @@ const projectsBoard = (function ProjectsBoard() {
         targetProject.printSpecificTask(taskIndex);
     };
 
+    // Update/edit specific project
+    const updateSpecificProject = (projectIndex, newProjectDetails) => {
+        if (availabilityChecker(projectIndex, myProjects)) {
+            console.log("Can't update missing project");
+            return
+        }
+
+        console.log(`Updating project number ${parseInt(projectIndex) + 1}`);
+        myProjects[projectIndex].updateProjectDetails(newProjectDetails);
+    }
+
     // Update/Edit specific task.
     const updateSpecificTaskInChosenProject = (projectIndex, taskIndex, newTaskDetails) => {
         if (availabilityChecker(projectIndex, myProjects)) {
@@ -65,7 +76,7 @@ const projectsBoard = (function ProjectsBoard() {
             return;
         }
         
-        console.log(`Updating task in project: ${projectIndex + 1}`);
+        console.log(`Updating task in project: ${parseInt(projectIndex) + 1}`);
         myProjects[projectIndex].updateSpecificTask(taskIndex, newTaskDetails);
     }
 
@@ -102,6 +113,7 @@ const projectsBoard = (function ProjectsBoard() {
         addTaskToProject,
         showTasksInChosenProject,
         showSpecificTaskInSpecificProject,
+        updateSpecificProject,
         updateSpecificTaskInChosenProject,
         deleteProjectFromBoard,
         deleteSpecificTask,

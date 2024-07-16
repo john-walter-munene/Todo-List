@@ -1,7 +1,6 @@
 import { priorityStyling, statusStyling } from "../resources/utitilityFunctions";
-import { projectWorkFlowManager } from "./projectWorkflow";
 
-// Create ros for tasks.
+// Create rows for tasks.
 class OutLineTask {
     constructor(task) {
         this.task = task;
@@ -167,10 +166,6 @@ class ExpandProjectSeeContent {
         deleteProjectButton.setAttribute('class', 'delete-project');
         deleteProjectButton.textContent = 'Delete';
 
-        // Add actions to buttons.
-        closeProjectButton.addEventListener('click', () => closeOpenProject());
-        deleteProjectButton.addEventListener('click', () => deleteOpenProject());
-
         // Put buttons in their holder.
         projectButtonsHolder.append(closeProjectButton, editProjectButton, deleteProjectButton);
 
@@ -185,16 +180,6 @@ class ExpandProjectSeeContent {
 
         return projectContainer;
     }
-}
-
-// Close project
-function closeOpenProject() {
-    projectWorkFlowManager.closeAProject();
-}
-
-// Delete project.
-function deleteOpenProject() {
-    projectWorkFlowManager.deleteAProject();
 }
 
 export { ExpandProjectSeeContent };

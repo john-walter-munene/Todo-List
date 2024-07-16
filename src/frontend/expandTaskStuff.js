@@ -1,5 +1,4 @@
 import { priorityStyling, statusStyling } from "../resources/utitilityFunctions";
-import { taskWorkFlowManager } from "./taskWorkflow";
 
 // Create expanded view for tasks.
 class ExpandedTaskSeeContent {
@@ -94,10 +93,6 @@ class ExpandedTaskSeeContent {
         deleteTaskButton.setAttribute('class', 'delete-task');
         deleteTaskButton.textContent = 'Delete';
 
-        // Add actions to buttons.
-        closeTaskButton.addEventListener('click', () => closeOpenTask());
-        deleteTaskButton.addEventListener('click', () => deleteOpenTask());
-
         // Put buttons in their holder.
         taskButtonsHolder.append(closeTaskButton, editTaskButton, deleteTaskButton);
 
@@ -109,16 +104,6 @@ class ExpandedTaskSeeContent {
 
         return taskContainer;
     }
-}
-
-// Close open task.
-function closeOpenTask() {
-    taskWorkFlowManager.closeATask()
-}
-
-// Delete open task.
-function deleteOpenTask() {
-    taskWorkFlowManager.deleteATask();
 }
 
 export { ExpandedTaskSeeContent };

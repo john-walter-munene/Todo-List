@@ -59,12 +59,25 @@ function taskUpdater() {
     let updatedTask = new Task(
         "Rewrite Project Proposal",
         "Munene Njeru",
-        "Planning",
+        "In Progress",
         "This project needs to be updated to meet the new Catalyst requirements.",
         "July 15, 2024",
         "Medium"
     );
     return updatedTask;
+}
+
+function projectUpdater() {
+    let updatedProject = new Project (
+        "Autheo white papers",
+        "In Progress",
+        "Munene Njeru",
+        "July 14, 2024",
+        "January 15, 2025",
+        "High",
+        "This Project is taking me to the billionares path",
+    );
+    return updatedProject;
 }
 
 // Test for task or project presence.
@@ -110,6 +123,7 @@ export {
     taskGenerator, 
     availabilityChecker, 
     taskUpdater,
+    projectUpdater,
     setTheme,
     priorityStyling,
     statusStyling,

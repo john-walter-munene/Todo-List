@@ -13,6 +13,17 @@ class Project {
         this.projectTasks = [];
     }
 
+    // Update project.
+    updateProjectDetails(newProjectDetails) {
+        this.projectName = newProjectDetails.projectName;
+        this.status = newProjectDetails.status;
+        this.owner = newProjectDetails.owner;
+        this.startDate = newProjectDetails.startDate;
+        this.dueDate = newProjectDetails.dueDate;
+        this.projectPriority = newProjectDetails.projectPriority;
+        this.projectSummary = newProjectDetails.projectSummary;
+    }
+
     // Get all tasks in a project
     getProjectTasks() {
         return this.projectTasks;
@@ -47,7 +58,7 @@ class Project {
             return;
         }
 
-        console.log(`Updating task: ${taskIndex + 1}`);
+        console.log(`Updating task: ${parseInt(taskIndex) + 1}`);
         this.projectTasks[taskIndex].updateTaskDetails(newTaskDetails);
     }
 
