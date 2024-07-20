@@ -1,4 +1,4 @@
-import { projectsBoard } from "../backend/projectsBoard";
+import { taskMasterController } from "../front-back-link/decoupler";
 import { screenController } from "./screenController";
 import { ProjectsStuffEditor } from "./editStuff";
 import { EditedStuffSubmissionHandler } from "./editedStuffSubmissions";
@@ -39,7 +39,7 @@ class TaskWorkFlowManager {
         // Close task and reload tasks page.
         let taskProjectIndex = taskToDelete.getAttribute('project-index');
         let taskIndex = taskToDelete.getAttribute('task-index');
-        projectsBoard.deleteSpecificTask(taskProjectIndex, taskIndex);
+        taskMasterController.deleteSpecificTask(taskProjectIndex, taskIndex);
         this.closeATask();
         screenController.switchToTasks();
     }

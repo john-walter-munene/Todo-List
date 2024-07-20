@@ -1,4 +1,4 @@
-import { projectsBoard } from '../backend/projectsBoard';
+import { taskMasterController } from '../front-back-link/decoupler';
 import { priorityStyling, statusStyling } from '../resources/utitilityFunctions';
 import { ExpandProjectSeeContent } from './expandProjectStuff';
 import { projectWorkFlowManager } from './projectWorkflow';
@@ -155,7 +155,7 @@ function displayProjects() {
     const projectsTableBody = document.createElement('tbody');
 
     // Add projects to table;
-    const availableProjects = projectsBoard.getProjectsBoard();
+    const availableProjects = taskMasterController.getProjectsBoard();
     for (let counter = 0; counter < availableProjects.length; counter++) {
         const currentProject = availableProjects[counter];
         const currentProjectUIComponent = new ShowProject(currentProject).createProjectComponent();
@@ -193,7 +193,7 @@ function openProjectByIndex(projectIndex) {
     projectWorkFlowManager.closeAProject();
 
     // Get project to view
-    let clickedProject = projectsBoard.getProjectsBoard()[projectIndex];
+    let clickedProject = taskMasterController.getProjectsBoard()[projectIndex];
 
     // Create project details UI component and add it to the screen
     let clickedProjectContent = new ExpandProjectSeeContent(clickedProject).visualizeProjectContent(projectIndex);

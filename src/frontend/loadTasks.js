@@ -1,4 +1,4 @@
-import { projectsBoard } from '../backend/projectsBoard';
+import { taskMasterController } from '../front-back-link/decoupler';
 import { priorityStyling, statusStyling } from '../resources/utitilityFunctions';
 import { ExpandedTaskSeeContent } from './expandTaskStuff';
 
@@ -157,7 +157,7 @@ function displayTasks() {
     const tasksTableBody = document.createElement('tbody');
 
     // Add all tasks to table.
-    const availableProjects = projectsBoard.getProjectsBoard();
+    const availableProjects = taskMasterController.getProjectsBoard();
     let zeroTaskAlertCounter = 0;
 
     for (let projectCounter = 0; projectCounter < availableProjects.length; projectCounter++) {
@@ -213,7 +213,7 @@ function openTaskByIndex( projectIndex,taskIndex) {
     taskWorkFlowManager.closeATask();
 
     // Get task to view.
-    let clickedTaskProject = projectsBoard.getProjectsBoard()[projectIndex];
+    let clickedTaskProject = taskMasterController.getProjectsBoard()[projectIndex];
     let clickedTask = clickedTaskProject.projectTasks[taskIndex];
 
     // Create task details UI component and add it to screen.

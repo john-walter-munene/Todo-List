@@ -1,4 +1,4 @@
-import { projectsBoard } from "../backend/projectsBoard";
+import { taskMasterController } from "../front-back-link/decoupler";
 
 class ProjectStuffCreator {
     createNewProject() {
@@ -204,7 +204,7 @@ class ProjectStuffCreator {
         // Options.
         let optionOneStatus = document.createElement('option');
         optionOneStatus.textContent = 'Not Started';
-        optionOneStatus.setAttribute('value', 'Not started');
+        optionOneStatus.setAttribute('value', 'Not Started');
         let optionTwoStatus = document.createElement('option');
         optionTwoStatus.textContent = 'In Progress';
         optionTwoStatus.setAttribute('value', 'In Progress');
@@ -253,7 +253,7 @@ class ProjectStuffCreator {
         defaultOption.setAttribute('selected', true);
         taskProjectChoiceInput.appendChild(defaultOption);
         // Provide available projects as options.
-        const availableProjects = projectsBoard.getProjectsBoard();
+        const availableProjects = taskMasterController.getProjectsBoard();
         for (let projectIndex = 0; projectIndex < availableProjects.length; projectIndex++) {
             const projectAsAnOption = document.createElement('option');
             projectAsAnOption.textContent = availableProjects[projectIndex].projectName;

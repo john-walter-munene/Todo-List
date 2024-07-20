@@ -1,4 +1,4 @@
-import { projectsBoard } from "../backend/projectsBoard";
+import { taskMasterController } from "../front-back-link/decoupler";
 import { Project } from "../backend/project";
 import { Task } from "../backend/task";
 
@@ -33,7 +33,7 @@ class EditedStuffSubmissionHandler {
           );
         
         // Edit project details on Board.
-        projectsBoard.updateSpecificProject(projectIndex, newProjectDetails);
+        taskMasterController.updateSpecificProject(projectIndex, newProjectDetails);
     }
 
     submitEditedTaskDetailsToProject(projectIndex, taskIndex,) {
@@ -59,9 +59,8 @@ class EditedStuffSubmissionHandler {
             taskDueDateValue,
             taskPriorityValue,
         );
-        console.log(newTaskDetails);
-        console.log(taskProjectChoiceValue);
-        projectsBoard.updateSpecificTaskInChosenProject(projectIndex, taskIndex, newTaskDetails)
+
+        taskMasterController.updateSpecificTask(projectIndex, taskIndex, newTaskDetails);
     }
 }
 
