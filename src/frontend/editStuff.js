@@ -1,12 +1,12 @@
 import { ProjectStuffCreator } from "./createStuff";
-import { projectsBoard } from "../backend/projectsBoard";
+import { taskMasterController } from "../front-back-link/decoupler";
 
 import { format } from "date-fns";
 
 class ProjectsStuffEditor {
     editAProject(projectIndex) {
         // Get project details from board, create a new form.
-        let projectOnEdit = projectsBoard.getProjectsBoard()[projectIndex];
+        let projectOnEdit = taskMasterController.getProjectsBoard()[projectIndex];
         let projectEditForm = new ProjectStuffCreator().createNewProject();
         
         // Update form details to project edit as opposed to create.
@@ -47,7 +47,7 @@ class ProjectsStuffEditor {
 
     editATask(projectIndex, taskIndex) {
         // Get task details from board, create a new form.
-        let projectForTaskOnEdit = projectsBoard.getProjectsBoard()[projectIndex];
+        let projectForTaskOnEdit = taskMasterController.getProjectsBoard()[projectIndex];
         let taskOnEdit = projectForTaskOnEdit.projectTasks[taskIndex];
         let taskEditForm = new ProjectStuffCreator().createNewTask();
 
@@ -86,7 +86,7 @@ class ProjectsStuffEditor {
         let taskProjectChoiceOptions = taskProjectChoiceInput.options;
         // Remove the default option (fallback if no project is selected on creation)
         taskProjectChoiceInput.remove(0);
-        let indexOfProjectTaskLivesIn = projectsBoard.getProjectsBoard().indexOf(projectForTaskOnEdit);
+        let indexOfProjectTaskLivesIn = taskMasterController.getProjectsBoard().indexOf(projectForTaskOnEdit);
           
         for (let projectCounter = 0; projectCounter < taskProjectChoiceOptions.length; projectCounter++) {
             let option = taskProjectChoiceOptions[projectCounter];

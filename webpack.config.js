@@ -7,12 +7,12 @@ module.exports = {
         // Main files.
         index: './src/index.js',
 
-        // Bakend files.
+        // Console Application.
         projectsBoard: './src/backend/projectsBoard.js',
         project: './src/backend/project.js',
         task: './src/backend/task.js',
 
-        // Utility files
+        // Utility files.
         utilityFunctions: './src/resources/utitilityFunctions.js',
 
         // Frontend files.
@@ -27,6 +27,9 @@ module.exports = {
         editStuff: './src/frontend/editStuff',
         stuffSubmissions: './src/frontend/submitStuffToBoard.js',
         editsSubmissions: './src/frontend/editedStuffSubmissions.js',
+
+        // Decoupler (Link Btn console app and DOM).
+        decoupler: './src/front-back-link/decoupler.js',
     },
     plugins: [
         new HtmlWebpackPlugin({

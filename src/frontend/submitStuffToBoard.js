@@ -1,4 +1,4 @@
-import { projectsBoard } from "../backend/projectsBoard";
+import { taskMasterController } from "../front-back-link/decoupler";
 import { Project } from "../backend/project";
 import { Task } from "../backend/task";
 
@@ -33,7 +33,7 @@ class StuffSubmissionHandler {
           );
 
         //  Add project to board.
-        projectsBoard.addNewProjectToBoard(newProject);
+        taskMasterController.addANewProjectToBoard(newProject);
     }
 
     submitTaskToAProject() {
@@ -64,7 +64,7 @@ class StuffSubmissionHandler {
         let taskProjectChoiceIndex = parseInt(taskProjectChoiceValue);
 
         // Add task to chosen project.
-        projectsBoard.addTaskToProject(taskProjectChoiceIndex, newTask);
+        taskMasterController.addANewTaskToProject(taskProjectChoiceIndex, newTask);
     }
 }
 

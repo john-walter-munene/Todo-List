@@ -1,4 +1,4 @@
-import { projectsBoard } from "../backend/projectsBoard";
+import { taskMasterController } from "../front-back-link/decoupler";
 import { screenController } from "./screenController";
 import { ProjectsStuffEditor } from "./editStuff";
 import { EditedStuffSubmissionHandler } from "./editedStuffSubmissions";
@@ -36,7 +36,7 @@ class ProjectWorkFlowManager {
         // Get project index and use it to delete it from board.
         // Close project and reload projects page.
         let indexOfProjectToDelete = projectToDelete.getAttribute('project-index');
-        projectsBoard.deleteProjectFromBoard(indexOfProjectToDelete);
+        taskMasterController.deleteSpecificProject(indexOfProjectToDelete);
         this.closeAProject();
         screenController.switchToProjects();
     }
