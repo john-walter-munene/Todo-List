@@ -1,10 +1,4 @@
-import { 
-    projectGenerator, 
-    projectGeneratorTwo, 
-    projectGeneratorThree, 
-    taskGenerator, 
-    availabilityChecker, 
-} from "../resources/utitilityFunctions";
+import { availabilityChecker } from "../resources/utitilityFunctions";
 
 // Create a projects board to control all my projects (single instance).
 const projectsBoard = (function ProjectsBoard() {
@@ -119,18 +113,5 @@ const projectsBoard = (function ProjectsBoard() {
         deleteSpecificTask,
     };
 })();
-
-// Add two duplicate projects for testing.
-projectsBoard.addNewProjectToBoard(projectGenerator());
-projectsBoard.addNewProjectToBoard(projectGeneratorTwo());
-projectsBoard.addNewProjectToBoard(projectGeneratorThree());
-
-// Create new tasks, add it to my default project.
-projectsBoard.addTaskToProject(0, taskGenerator());
-projectsBoard.addTaskToProject(0, taskGenerator());
-
-// Create new tasks for my second project.
-projectsBoard.addTaskToProject(1, taskGenerator());
-projectsBoard.addTaskToProject(1, taskGenerator());
 
 export { projectsBoard };
