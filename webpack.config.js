@@ -11,6 +11,7 @@ module.exports = {
         projectsBoard: './src/backend/projectsBoard.js',
         project: './src/backend/project.js',
         task: './src/backend/task.js',
+        storage: './src/backend/storage.js',
 
         // Utility files.
         utilityFunctions: './src/resources/utitilityFunctions.js',

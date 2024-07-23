@@ -1,42 +1,98 @@
-import { projectsBoard } from "../backend/projectsBoard"
+// import { projectsBoard } from "../backend/projectsBoard"
+
+// class TaskMasterController {
+//     // Get the Projects Boards.
+//     getProjectsBoard() {
+//         return projectsBoard.getProjectsBoard();
+//     }
+
+//     // Add a new project to Board.
+//     addANewProjectToBoard(project) {
+//         return projectsBoard.addNewProjectToBoard(project);
+//     }
+
+//     // Add a new task to a project.
+//     addANewTaskToProject(projectChoiceViaIndex, task) {
+//         return projectsBoard.addTaskToProject(projectChoiceViaIndex, task);
+//     }
+
+//     // Update a chosen project.
+//     updateSpecificProject(projectIndex, newProjectDetails) {
+//         return projectsBoard.updateSpecificProject(projectIndex, newProjectDetails);
+//     }
+
+//     // Update a chosen task.
+//     updateSpecificTask(projectIndex, taskIndex, newProjectDetails) {
+//         return projectsBoard.updateSpecificTaskInChosenProject(projectIndex, taskIndex, newProjectDetails);
+//     }
+
+//     // Delete a project from board.
+//     deleteSpecificProject(projectIndex) {
+//         return projectsBoard.deleteProjectFromBoard(projectIndex);
+//     }
+
+//     // Delete a task  from chosen project.
+//     deleteSpecificTask(projectIndex, taskIndex) {
+//         return projectsBoard.deleteSpecificTask(projectIndex, taskIndex);
+//     }
+// }
+
+// const taskMasterController = new TaskMasterController();
+
+// export { taskMasterController };
+
+import { projectsBoard } from "../backend/projectsBoard";
+import { saveProjectsBoardToLocalStorage, loadProjectsBoardFromLocalStorage } from "../backend/storage";
 
 class TaskMasterController {
-    // Get the Projects Boards.
+    constructor() {
+        // Load projects from local storage when the controller is instantiated
+        loadProjectsBoardFromLocalStorage(projectsBoard);
+    }
+
+    // Get the Projects Boards
     getProjectsBoard() {
         return projectsBoard.getProjectsBoard();
     }
 
-    // Add a new project to Board.
+    // Add a new project to Board
     addANewProjectToBoard(project) {
-        return projectsBoard.addNewProjectToBoard(project);
+        projectsBoard.addNewProjectToBoard(project);
+        saveProjectsBoardToLocalStorage(projectsBoard);
     }
 
-    // Add a new task to a project.
+    // Add a new task to a project
     addANewTaskToProject(projectChoiceViaIndex, task) {
-        return projectsBoard.addTaskToProject(projectChoiceViaIndex, task);
+        projectsBoard.addTaskToProject(projectChoiceViaIndex, task);
+        saveProjectsBoardToLocalStorage(projectsBoard);
     }
 
-    // Update a chosen project.
+    // Update a chosen project
     updateSpecificProject(projectIndex, newProjectDetails) {
-        return projectsBoard.updateSpecificProject(projectIndex, newProjectDetails);
+        projectsBoard.updateSpecificProject(projectIndex, newProjectDetails);
+        saveProjectsBoardToLocalStorage(projectsBoard);
     }
 
-    // Update a chosen task.
-    updateSpecificTask(projectIndex, taskIndex, newProjectDetails) {
-        return projectsBoard.updateSpecificTaskInChosenProject(projectIndex, taskIndex, newProjectDetails);
+    // Update a chosen task
+    updateSpecificTask(projectIndex, taskIndex, newTaskDetails) {
+        projectsBoard.updateSpecificTaskInChosenProject(projectIndex, taskIndex, newTaskDetails);
+        saveProjectsBoardToLocalStorage(projectsBoard);
     }
 
-    // Delete a project from board.
+    // Delete a project from board
     deleteSpecificProject(projectIndex) {
-        return projectsBoard.deleteProjectFromBoard(projectIndex);
+        projectsBoard.deleteProjectFromBoard(projectIndex);
+        saveProjectsBoardToLocalStorage(projectsBoard);
     }
 
-    // Delete a task  from chosen project.
+    // Delete a task from chosen project
     deleteSpecificTask(projectIndex, taskIndex) {
-        return projectsBoard.deleteSpecificTask(projectIndex, taskIndex);
+        projectsBoard.deleteSpecificTask(projectIndex, taskIndex);
+        saveProjectsBoardToLocalStorage(projectsBoard);
     }
 }
 
+// Instantiate and export the controller
 const taskMasterController = new TaskMasterController();
 
 export { taskMasterController };
